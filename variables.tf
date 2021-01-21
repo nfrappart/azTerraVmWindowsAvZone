@@ -4,7 +4,7 @@
 #Variable declaration for Module
 
 #The target environement for the application
-variable "VmPrefix" {
+variable "VmEnv" {
   type = string
 }
 

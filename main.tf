@@ -13,12 +13,11 @@ resource "random_password" "TerraVM-pass" {
 
 # save password in keyvault secret
 resource "azurerm_key_vault_secret" "TerraVM-secret" {
-  name         = "${var.VmPrefix}azuvsrv${format("%04d", var.CovageServerId)}w-covadmin"
+  name         = "${var.VmEnv}win${format("%04d", var.VmNumber)}l-${var.VmAdminName}"
   value        = random_password.TerraVM-pass.result
   key_vault_id = var.KvId
   tags = {
     Environment       = var.EnvironmentTag
-    EnvironmentUsage  = var.EnvironmentUsageTag
     Owner             = var.OwnerTag
     ProvisioningDate  = var.ProvisioningDateTag
     ProvisioningMode  = var.ProvisioningModeTag
@@ -35,7 +34,7 @@ resource "azurerm_key_vault_secret" "TerraVM-secret" {
 
 # Create Storage Account for VM Diag
 resource azurerm_storage_account "TerraVM-diag" {
-  name  =  "${var.VmPrefix}azuvsrv${format("%04d", var.CovageServerId)}wdiag"
+  name  =  "${var.VmEnv}win${format("%04d", var.VmNumber)}ldiag"
   resource_group_name = var.RgName
   location = var.RgLocation
   account_tier = "Standard"
@@ -43,7 +42,6 @@ resource azurerm_storage_account "TerraVM-diag" {
 
   tags = {
     Environment      = var.EnvironmentTag
-    Usage            = var.EnvironmentUsageTag
     Owner            = var.OwnerTag
     ProvisioningDate = var.ProvisioningDateTag
     ProvisioningMode = var.ProvisioningModeTag
@@ -58,7 +56,7 @@ resource azurerm_storage_account "TerraVM-diag" {
 
 # Create NIC for VM
 resource "azurerm_network_interface" "TerraVM-nic0" {
-  name                = "${var.VmPrefix}azuvsrv${format("%04d", var.CovageServerId)}w-nic0"
+  name                = "${var.VmEnv}win${format("%04d", var.VmNumber)}l-nic0"
   resource_group_name = var.RgName
   location            = var.RgLocation
   #dns_servers         = var.Dns
@@ -72,13 +70,13 @@ resource "azurerm_network_interface" "TerraVM-nic0" {
 
 #Create VM(s)
 resource "azurerm_windows_virtual_machine" "TerraVM" {
-  name                = "${var.VmPrefix}azuvsrv${format("%04d", var.CovageServerId)}w"
-  computer_name       = "${var.VmPrefix}azuvsrv${format("%04d", var.CovageServerId)}w"
+  name                = "${var.VmEnv}win${format("%04d", var.VmNumber)}l"
+  computer_name       = "${var.VmEnv}win${format("%04d", var.VmNumber)}l"
   resource_group_name = var.RgName
   location            = var.RgLocation
   size                = var.VmSize
   admin_username      = var.VmAdminName
-  admin_password      = random_password.TerraVM-pass.result #var.VmAdminPassword
+  admin_password      = random_password.TerraVM-pass.result
 
 
   network_interface_ids = [
@@ -89,7 +87,7 @@ resource "azurerm_windows_virtual_machine" "TerraVM" {
   }
 
   os_disk {
-    name                 = "${var.VmPrefix}azuvsrv${format("%04d", var.CovageServerId)}w-OsDisk"
+    name                 = "${var.VmEnv}win${format("%04d", var.VmNumber)}l-OsDisk"
     caching              = "ReadWrite"
     storage_account_type = var.VmStorageTier#"Standard_LRS"
     disk_size_gb         = var.OsDiskSize#"127"
@@ -106,7 +104,6 @@ resource "azurerm_windows_virtual_machine" "TerraVM" {
 
   tags = {
     Environment       = var.EnvironmentTag
-    Usage             = var.EnvironmentUsageTag
     Owner             = var.OwnerTag
     ProvisioningDate  = var.ProvisioningDateTag
     ProvisioningMode  = var.ProvisioningModeTag

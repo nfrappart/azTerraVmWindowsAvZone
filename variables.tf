@@ -8,8 +8,8 @@ variable "VmPrefix" {
   type = string
 }
 
-#serial of the server like 10, 85, 120, 55 for Covage naming convention
-variable "CovageServerId" {
+#serial of the server like 10, 85, 120, 55 for naming convention
+variable "VmNumber" {
   type    = string
 }
 
@@ -59,11 +59,8 @@ variable "VmStorageTier" {
 #The VM Admin Name
 variable "VmAdminName" {
   type    = string
-  default = "covadmin"
+  default = "admlocal"
 }
-#variable "VmAdminPassword" {
-#  type    = string
-#}
 
 variable "ImagePublisherName" {
   type = string
@@ -85,11 +82,6 @@ variable "ImageSku" {
 variable "EnvironmentTag" {
   type    = string
   default = "Poc"
-}
-
-variable "EnvironmentUsageTag" {
-  type    = string
-  default = "Poc usage only"
 }
 
 variable "OwnerTag" {

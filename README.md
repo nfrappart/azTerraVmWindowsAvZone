@@ -18,7 +18,7 @@ It will:
 
 ```hcl
 module "testVM" {
-  source = "github.com/nfrappart/azTerraVmWindowsAvZone"
+  source = "github.com/nfrappart/azTerraVmWindowsAvZone?ref=v1.0.0"
   RgName = module.rg-core-eu.Name #call existing RG name
   RgLocation = module.rg-core-eu.Location #call existing RG location
   VmEnv = "test"
@@ -52,7 +52,7 @@ variable "VmNumber-list" {
 
 module "testVM-pack" {
   for_each = toset(var.VmNumber-list)
-  source = "github.com/nfrappart/azTerraVmWindowsAvZone"
+  source = "github.com/nfrappart/azTerraVmWindowsAvZone?ref=v1.0.0"
   RgName = module.rg-core-eu.Name #call existing RG name
   RgLocation = module.rg-core-eu.Location #call existing RG location
   VmEnv = "test"

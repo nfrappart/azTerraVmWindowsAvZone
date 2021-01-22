@@ -89,11 +89,6 @@ variable "OwnerTag" {
   default = "Nate"
 }
 
-variable "ProvisioningDateTag" {
-  type = string
-  default = "today :)"
-}
-
 variable "ProvisioningModeTag" {
   type = string
   default = "Terraform"

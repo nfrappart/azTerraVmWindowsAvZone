@@ -31,7 +31,6 @@ module "testVM" {
   #ImageOffer = "WindowsServer"
   #ImageSku = "2019-Datacenter"
   SubnetId = module.sn-test-hub-eu.Id #call existing subnet id
-  ProvisioningDateTag = timestamp() #required!
   EnvironmentTag = "testing"
 }
 ```
@@ -65,6 +64,5 @@ module "testVM-pack" {
   #ImageOffer = "WindowsServer"
   #ImageSku = "2019-Datacenter"
   SubnetId = module.sn-test-hub-eu.Id #call existing subnet id
-  ProvisioningDateTag = timestamp() #required!
   EnvironmentTag = "testing"
 }

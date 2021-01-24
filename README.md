@@ -1,7 +1,7 @@
 # Windows Server Module
 This module allows you to create 1 Windows Server VM with 1 NIC
 It will:
-  - create 1 Windows VM (hostname and VM named according to naming system)
+  - create 1 Windows VM (hostname and VM named according to naming system: <environment>-<os>-<id>, like testwin0100, or prodwin0058, and so on)
   - create 1 NIC 
   - generate random admin password for VM admin (default admin name is admlocal)
   - create 1 secret in provided keyvault to store the admin password (the secret name will be hostname-admin_name, depending on variable VmAdminName value: !!!underscore unauthorized!!!)
@@ -14,7 +14,7 @@ It will:
 - existing VNet
 
 
-# Usage Example :
+# Usage Example (Single VM) :
 
 ```hcl
 module "testVM" {
@@ -35,7 +35,8 @@ module "testVM" {
 }
 ```
 
-# You can use for_each to create multiple VMs with this module, by feeding it with a collection, like the example below
+# Usage Example (Mutiple VM) : 
+You can use for_each to create multiple VMs with this module, by feeding it with a collection, like the example below
 
 Ths list is used to name the VMs. It doesn't need to be successive numbers, and any value can be removed later on to destroy one or more VM of the set without recreating the other VMs of the list.
 

@@ -1,7 +1,7 @@
 # Windows Server Module
 This module allows you to create 1 Windows Server VM with 1 NIC
 It will:
-  - create 1 Windows VM (hostname and VM named according to naming system: <environment>-<os>-<id>, like testwin0100, or prodwin0058, and so on)
+  - create 1 Windows VM (hostname and VM named according to naming system: <environment(like test/prod/stage)><os(lin or win)><id (4 digits serial)>, like testwin0100, or prodwin0058, and so on)
   - create 1 NIC 
   - generate random admin password for VM admin (default admin name is admlocal)
   - create 1 secret in provided keyvault to store the admin password (the secret name will be hostname-admin_name, depending on variable VmAdminName value: !!!underscore unauthorized!!!)

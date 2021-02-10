@@ -33,11 +33,7 @@ variable "SubnetId" {
 variable "KvId" {
   type = string
 }
-/*
-variable "Dns" {
-  type = list
-}
-*/
+
 #The VM Size (corresponding to azure service class like D2s_v3, D4s_v3, DS1_v2, DS2_v2 etc)
 variable "VmSize" {
   type    = string
@@ -82,6 +78,11 @@ variable "ImageSku" {
 variable "EnvironmentTag" {
   type    = string
   default = "Poc"
+}
+
+variable "UsageTag" {
+  type = string
+  default = "PoC usage only"
 }
 
 variable "OwnerTag" {

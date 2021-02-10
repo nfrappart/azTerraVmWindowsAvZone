@@ -32,6 +32,7 @@ module "testVM" {
   #ImageSku = "2019-Datacenter"
   SubnetId = module.sn-test-hub-eu.Id #call existing subnet id
   EnvironmentTag = "testing"
+  UsageTag = "Application Top Notch"
 }
 ```
 

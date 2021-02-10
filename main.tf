@@ -21,6 +21,7 @@ resource "azurerm_key_vault_secret" "TerraVM-secret" {
   key_vault_id = var.KvId
   tags = {
     Environment       = var.EnvironmentTag
+    Usage             = var.UsageTag
     Owner             = var.OwnerTag
     ProvisioningDate  = local.ProvisioningDateTag
     ProvisioningMode  = var.ProvisioningModeTag
@@ -45,6 +46,7 @@ resource azurerm_storage_account "TerraVM-diag" {
 
   tags = {
     Environment      = var.EnvironmentTag
+    Usage             = var.UsageTag
     Owner            = var.OwnerTag
     ProvisioningDate = local.ProvisioningDateTag
     ProvisioningMode = var.ProvisioningModeTag
@@ -107,6 +109,7 @@ resource "azurerm_windows_virtual_machine" "TerraVM" {
 
   tags = {
     Environment       = var.EnvironmentTag
+    Usage             = var.UsageTag
     Owner             = var.OwnerTag
     ProvisioningDate  = local.ProvisioningDateTag
     ProvisioningMode  = var.ProvisioningModeTag

@@ -4,7 +4,6 @@
 
 locals {
   vm_name_prefix = "${var.VmEnv}lin${format("%04d", var.VmNumber)}"
-  ProvisioningDateTag = timestamp()
 }
 
 # Create Password for vm
@@ -22,7 +21,7 @@ resource "azurerm_key_vault_secret" "TerraVM-secret" {
   tags = {
     Environment       = var.EnvironmentTag
     Owner             = var.OwnerTag
-    ProvisioningDate  = local.ProvisioningDateTag
+    ProvisioningDate  = timestamp()
     ProvisioningMode  = var.ProvisioningModeTag
     Username          = var.VmAdminName
   }
@@ -46,7 +45,7 @@ resource azurerm_storage_account "TerraVM-diag" {
   tags = {
     Environment      = var.EnvironmentTag
     Owner            = var.OwnerTag
-    ProvisioningDate = local.ProvisioningDateTag
+    ProvisioningDate = timestamp()
     ProvisioningMode = var.ProvisioningModeTag
     #BackupRetention  = var.BackupRetention
   }
@@ -108,7 +107,7 @@ resource "azurerm_windows_virtual_machine" "TerraVM" {
   tags = {
     Environment       = var.EnvironmentTag
     Owner             = var.OwnerTag
-    ProvisioningDate  = local.ProvisioningDateTag
+    ProvisioningDate  = timestamp()
     ProvisioningMode  = var.ProvisioningModeTag
     BackupRetention   = var.BackupRetention
   }

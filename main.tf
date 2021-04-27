@@ -3,7 +3,7 @@
 #####################################################################
 
 locals {
-  vm_name_prefix = "${var.VmEnv}lin${format("%04d", var.VmNumber)}"
+  vm_name_prefix = "${var.VmEnv}win${format("%04d", var.VmNumber)}"
 }
 
 # Create Password for vm
